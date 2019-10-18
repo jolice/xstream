@@ -60,8 +60,7 @@ public interface Stream<T> {
 
     boolean noneMatch(Predicate<? super T> predicate);
 
-    Optional<T> findFirst();
-
     Optional<T> findAny();
+
 
 }

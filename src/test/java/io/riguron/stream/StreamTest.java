@@ -5,6 +5,7 @@ import org.junit.Test;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
+import java.util.function.UnaryOperator;
 import java.util.stream.Collectors;
 
 import static java.util.Collections.emptyList;
@@ -32,6 +33,17 @@ public class StreamTest {
         assertEquals(Arrays.asList(4, 5, 7, 9, 10), collect);
         Arrays.asList(3, 8, 5, 2, 7)
                 .forEach(x -> verify(target).peekMe(x));
+    }
+
+    @Test
+    public void iterate() {
+        List<Integer> collect = StreamFactory.iterate(1, integer -> integer + 1).limit(5).collect(toList());
+
+        assertEquals(Arrays.asList(1,2,3,4,5), collect);
+
+
+
+
     }
 
     @Test
@@ -237,7 +249,7 @@ public class StreamTest {
     @Test
     public void findFirst() {
         Optional<Integer> result = StreamFactory.of(1, 2, 3).filter(x -> x.equals(2))
-                .findFirst();
+                .findAny();
 
         assertTrue(result.isPresent());
         assertEquals(2, result.get());

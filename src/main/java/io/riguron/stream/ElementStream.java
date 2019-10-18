@@ -23,7 +23,7 @@ public class ElementStream<T> implements Stream<T> {
 
     private Iterator<T> elementProvider;
 
-    public ElementStream(Iterator<T> elementProvider) {
+    ElementStream(Iterator<T> elementProvider) {
         this.elementProvider = elementProvider;
     }
 
@@ -114,13 +114,8 @@ public class ElementStream<T> implements Stream<T> {
     }
 
     @Override
-    public Optional<T> findFirst() {
-        return elementProvider.hasNext() ? Optional.ofNullable(elementProvider.next()) : Optional.empty();
-    }
-
-    @Override
     public Optional<T> findAny() {
-        return findFirst();
+        return elementProvider.hasNext() ? Optional.ofNullable(elementProvider.next()) : Optional.empty();
     }
 
     @Override

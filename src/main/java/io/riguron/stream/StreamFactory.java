@@ -4,11 +4,13 @@ import io.riguron.stream.iterator.ArrayIterator;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 
-import java.util.Collection;
 import java.util.Iterator;
+import java.util.function.UnaryOperator;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class StreamFactory {
+
+
 
     @SafeVarargs
     public static <T> Stream<T> of(T... items) {
@@ -16,15 +18,33 @@ public class StreamFactory {
     }
 
     public static <T> Stream<T> of(Iterable<T> iterable) {
-        return makeStream(iterable.iterator());
+        Iterator<T> iterator = iterable.iterator();
+        if (iterator.hasNext()) {
+            return makeStream(iterator);
+        } else {
+            return empty();
+        }
+    }
+
+    public static <T> Stream<T> iterate(final T seed, final UnaryOperator<T> f) {
+        return makeStream(new Iterator<T>() {
+
+            private T t;
+
+            @Override
+            public boolean hasNext() {
+                return true;
+            }
+
+            @Override
+            public T next() {
+                return t == null ? (t = seed) : (t = f.apply(t));
+            }
+        });
     }
 
     public static <T> Stream<T> empty() {
         return new EmptyStream<>();
-    }
-
-    public static <T> Stream<T> of(Collection<T> items) {
-        return items.isEmpty() ? empty() : makeStream(items.iterator());
     }
 
     private static <T> Stream<T> makeStream(Iterator<T> iterator) {

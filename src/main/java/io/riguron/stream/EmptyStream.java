@@ -10,6 +10,9 @@ import java.util.stream.Collector;
 
 public class EmptyStream<T> implements Stream<T> {
 
+    EmptyStream() {
+    }
+
     @Override
     public Iterator<T> iterator() {
         return new EmptyIterator<>();
@@ -131,12 +134,8 @@ public class EmptyStream<T> implements Stream<T> {
     }
 
     @Override
-    public Optional<T> findFirst() {
-        return Optional.empty();
-    }
-
-    @Override
     public Optional<T> findAny() {
         return Optional.empty();
     }
-}
+
+    }
