@@ -24,6 +24,21 @@ public class EmptyStream<T> implements Stream<T> {
     }
 
     @Override
+    public Stream<T> filterNot(Predicate<? super T> predicate) {
+        return this;
+    }
+
+    @Override
+    public Stream<T> takeWhile(Predicate<T> predicate) {
+        return this;
+    }
+
+    @Override
+    public Stream<T> dropWhile(Predicate<T> predicate) {
+        return this;
+    }
+
+    @Override
     public <R> Stream<R> map(Function<? super T, ? extends R> mapper) {
         return new EmptyStream<>();
     }
@@ -36,6 +51,11 @@ public class EmptyStream<T> implements Stream<T> {
     @Override
     public Stream<T> distinct() {
         return this;
+    }
+
+    @Override
+    public Stream<T> apply(UnaryOperator<Stream<T>> op) {
+        return op.apply(this);
     }
 
     @Override
@@ -138,4 +158,4 @@ public class EmptyStream<T> implements Stream<T> {
         return Optional.empty();
     }
 
-    }
+}

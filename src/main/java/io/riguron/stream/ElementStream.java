@@ -33,14 +33,35 @@ public class ElementStream<T> implements Stream<T> {
     }
 
     @Override
+    public Stream<T> filterNot(Predicate<? super T> predicate) {
+        return this.filter(predicate.negate());
+    }
+
+    @Override
+    public Stream<T> takeWhile(Predicate<T> predicate) {
+        return new ElementStream<>(new TakeWhileIterator<>(this.elementProvider, predicate));
+    }
+
+    @Override
+    public Stream<T> dropWhile(Predicate<T> predicate) {
+        return new ElementStream<>(new DropWhileIterator<>(this.elementProvider, predicate));
+    }
+
+    @Override
     public Stream<T> distinct() {
         return new ElementStream<>(new DistinctIterator<>(elementProvider));
     }
 
     @Override
-    public <R> Stream<R> map(Function<? super T, ? extends R> mapper) {
-        return new ElementStream<>(new MappingIterator<R, T>(elementProvider, mapper));
+    public Stream<T> apply(UnaryOperator<Stream<T>> op) {
+        return op.apply(this);
     }
+
+    @Override
+    public <R> Stream<R> map(Function<? super T, ? extends R> mapper) {
+        return new ElementStream<>(new MappingIterator<>(elementProvider, mapper));
+    }
+
 
     @Override
     public void forEach(Consumer<? super T> action) {

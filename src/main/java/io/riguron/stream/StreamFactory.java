@@ -10,8 +10,6 @@ import java.util.function.UnaryOperator;
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class StreamFactory {
 
-
-
     @SafeVarargs
     public static <T> Stream<T> of(T... items) {
         return items.length == 0 ? empty() : makeStream(new ArrayIterator<>(items));

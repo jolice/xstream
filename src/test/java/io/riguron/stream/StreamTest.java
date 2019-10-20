@@ -5,7 +5,6 @@ import org.junit.Test;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
-import java.util.function.UnaryOperator;
 import java.util.stream.Collectors;
 
 import static java.util.Collections.emptyList;
@@ -38,12 +37,13 @@ public class StreamTest {
     @Test
     public void iterate() {
         List<Integer> collect = StreamFactory.iterate(1, integer -> integer + 1).limit(5).collect(toList());
+        assertEquals(Arrays.asList(1, 2, 3, 4, 5), collect);
+    }
 
-        assertEquals(Arrays.asList(1,2,3,4,5), collect);
-
-
-
-
+    @Test
+    public void customOp() {
+        assertEquals(Arrays.asList(2, 3, 4, 5),
+                StreamFactory.of(1, 2, 3, 4).apply(integerStream -> integerStream.map(x -> x + 1)).collect(toList()));
     }
 
     @Test
@@ -63,6 +63,7 @@ public class StreamTest {
                         .collect(toList())
         );
     }
+
 
     @Test
     public void whenFlatMap() {
@@ -113,6 +114,44 @@ public class StreamTest {
         }
     }
 
+
+    @Test
+    public void takeWhile() {
+        assertEquals(Arrays.asList(1, 2, 3, 4),
+                StreamFactory.of(1, 2, 3, 4, 9, 3, 2)
+                        .takeWhile(x -> x <= 4)
+                        .collect(toList())
+        );
+    }
+
+    @Test
+    public void dropWhile() {
+        assertEquals(
+                Arrays.asList(4, 8, 9, 6),
+                StreamFactory.of(2, 3, 1, 0, -5, 4, 8, 9, 6)
+                        .dropWhile(x -> x < 4).collect(toList())
+        );
+    }
+
+    @Test
+    public void filterNot() {
+        assertEquals(
+                Arrays.asList(3, 1, 5),
+                StreamFactory.of(2, 4, 6, 3, 1, 5, 0)
+                        .filterNot(x -> x % 2 == 0)
+                        .collect(toList())
+        );
+    }
+
+    @Test
+    public void filterNulls() {
+        assertEquals(
+                Arrays.asList(4, 2, 5),
+                StreamFactory.of(4, null, null, 2, null, 5).filterNulls().collect(toList())
+        );
+    }
+
+
     @Test
     public void limit() {
         assertEquals(Arrays.asList(1, 2),
@@ -149,7 +188,7 @@ public class StreamTest {
     @Test
     public void toGenericArray() {
         Integer[] integers = StreamFactory.of(1, 2, 3).toArray(Integer[]::new);
-        assertTrue(Arrays.equals(new Integer[]{1,2,3}, integers));
+        assertTrue(Arrays.equals(new Integer[]{1, 2, 3}, integers));
     }
 
     @Test

@@ -16,11 +16,23 @@ public interface Stream<T> {
 
     Stream<T> filter(Predicate<? super T> predicate);
 
+    Stream<T> filterNot(Predicate<? super T> predicate);
+
+    Stream<T> takeWhile(Predicate<T> predicate);
+
+    Stream<T> dropWhile(Predicate<T> predicate);
+
     <R> Stream<R> map(Function<? super T, ? extends R> mapper);
 
     <R> Stream<R> flatMap(Function<? super T, ? extends Stream<? extends R>> mapper);
 
     Stream<T> distinct();
+
+    Stream<T> apply(UnaryOperator<Stream<T>> op);
+
+    default Stream<T> filterNulls() {
+        return filter(Objects::nonNull);
+    }
 
     Stream<T> sorted();
 
