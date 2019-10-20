@@ -1,6 +1,10 @@
 # Stream
 Implementation of simplified version of Java Stream API with lazy evaluation.
 
+[![Build Status](https://travis-ci.org/riguron/Stream.svg?branch=master)](https://travis-ci.org/riguron/Stream)
+[![codecov](https://codecov.io/gh/riguron/Stream/branch/master/graph/badge.svg)](https://codecov.io/gh/riguron/Stream)
+[![HitCount](http://hits.dwyl.io/riguron/Stream.svg)](http://hits.dwyl.io/riguron/Stream)
+
 # Creating a stream
 
 StreamFactory class is responsible for creating streams. 
