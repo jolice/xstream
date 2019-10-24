@@ -4,6 +4,8 @@ Implementation of simplified and modified version of Java Stream API with lazy e
 [![Build Status](https://travis-ci.org/riguron/Stream.svg?branch=master)](https://travis-ci.org/riguron/Stream)
 [![](https://jitpack.io/v/riguron/Stream.svg)](https://jitpack.io/#riguron/Stream)
 [![codecov](https://codecov.io/gh/riguron/Stream/branch/master/graph/badge.svg)](https://codecov.io/gh/riguron/Stream)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=riguron_Stream&metric=alert_status)](https://sonarcloud.io/dashboard?id=riguron_Stream)
+[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=riguron_Stream&metric=sqale_rating)](https://sonarcloud.io/dashboard?id=riguron_Stream)
 [![HitCount](http://hits.dwyl.io/riguron/Stream.svg)](http://hits.dwyl.io/riguron/Stream)
 
 # Dependency
