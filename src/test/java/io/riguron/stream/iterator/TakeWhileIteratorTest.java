@@ -1,11 +1,12 @@
 package io.riguron.stream.iterator;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 import java.util.Collections;
 
-import static org.junit.Assert.*;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class TakeWhileIteratorTest {
 
@@ -18,19 +19,19 @@ public class TakeWhileIteratorTest {
                 );
 
         assertTrue(takeWhileIterator.hasNext());
-        assertEquals(5, takeWhileIterator.next());
+        assertEquals(5, takeWhileIterator.next().intValue());
 
         assertTrue(takeWhileIterator.hasNext());
-        assertEquals(6, takeWhileIterator.next());
+        assertEquals(6, takeWhileIterator.next().intValue());
 
         assertTrue(takeWhileIterator.hasNext());
-        assertEquals(2, takeWhileIterator.next());
+        assertEquals(2, takeWhileIterator.next().intValue());
 
         assertTrue(takeWhileIterator.hasNext());
-        assertEquals(3, takeWhileIterator.next());
+        assertEquals(3, takeWhileIterator.next().intValue());
 
         assertTrue(takeWhileIterator.hasNext());
-        assertEquals(8, takeWhileIterator.next());
+        assertEquals(8, takeWhileIterator.next().intValue());
 
         assertFalse(takeWhileIterator.hasNext());
     }

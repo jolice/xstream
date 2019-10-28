@@ -1,14 +1,13 @@
 package io.riguron.stream.iterator;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Iterator;
 
-import static org.junit.Assert.*;
-
+import static org.junit.jupiter.api.Assertions.*;
 public class SortedIteratorTest {
 
     @Test
@@ -18,19 +17,19 @@ public class SortedIteratorTest {
         );
 
         assertTrue(iterator.hasNext());
-        assertEquals(2, iterator.next());
+        assertEquals(2, iterator.next().intValue());
 
         assertTrue(iterator.hasNext());
-        assertEquals(3, iterator.next());
+        assertEquals(3, iterator.next().intValue());
 
         assertTrue(iterator.hasNext());
-        assertEquals(4, iterator.next());
+        assertEquals(4, iterator.next().intValue());
 
         assertTrue(iterator.hasNext());
-        assertEquals(5, iterator.next());
+        assertEquals(5, iterator.next().intValue());
 
         assertTrue(iterator.hasNext());
-        assertEquals(8, iterator.next());
+        assertEquals(8, iterator.next().intValue());
 
         assertFalse(iterator.hasNext());
     }

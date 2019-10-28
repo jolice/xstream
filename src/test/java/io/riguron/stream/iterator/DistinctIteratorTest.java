@@ -1,13 +1,14 @@
 package io.riguron.stream.iterator;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
 
-import static java.util.Collections.emptyList;
-import static org.junit.Assert.*;
+
+import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class DistinctIteratorTest {
 
@@ -23,15 +24,15 @@ public class DistinctIteratorTest {
         Iterator<Integer> uniqueItr = new DistinctIterator<>(Arrays.asList(1,2,3).iterator());
 
         assertTrue(uniqueItr.hasNext());
-        assertEquals(1, uniqueItr.next());
+        assertEquals(1, uniqueItr.next().intValue());
 
 
         assertTrue(uniqueItr.hasNext());
-        assertEquals(2, uniqueItr.next());
+        assertEquals(2, uniqueItr.next().intValue());
 
 
         assertTrue(uniqueItr.hasNext());
-        assertEquals(3, uniqueItr.next());
+        assertEquals(3, uniqueItr.next().intValue());
     }
 
     @Test
@@ -39,7 +40,7 @@ public class DistinctIteratorTest {
         Iterator<Integer> uniqueItr = new DistinctIterator<>(Arrays.asList(1,1,1,1).iterator());
 
         assertTrue(uniqueItr.hasNext());
-        assertEquals(1 , uniqueItr.next());
+        assertEquals(1 , uniqueItr.next().intValue());
         assertFalse(uniqueItr.hasNext());
     }
 }

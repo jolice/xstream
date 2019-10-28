@@ -1,14 +1,13 @@
 package io.riguron.stream.iterator;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
-import java.util.function.Function;
 
-import static org.junit.Assert.*;
 
+import static org.junit.jupiter.api.Assertions.*;
 public class MappingIteratorTest {
 
     @Test

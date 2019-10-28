@@ -1,6 +1,6 @@
 package io.riguron.stream;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 import java.util.List;
@@ -10,7 +10,7 @@ import java.util.stream.Collectors;
 import static java.util.Collections.emptyList;
 import static java.util.Collections.reverseOrder;
 import static java.util.stream.Collectors.toList;
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 public class StreamTest {
@@ -195,7 +195,7 @@ public class StreamTest {
     public void reduceWithIdentity() {
         assertEquals(
                 10,
-                StreamFactory.of(1, 2, 3, 4).reduce(0, Integer::sum)
+                StreamFactory.of(1, 2, 3, 4).reduce(0, Integer::sum).longValue()
         );
     }
 
@@ -205,7 +205,7 @@ public class StreamTest {
         assertEquals(
                 10,
                 StreamFactory.of(1, 2, 3, 4).reduce(0,
-                        (a, b) -> a + b, Integer::sum)
+                        Integer::sum, Integer::sum).longValue()
         );
     }
 
@@ -215,7 +215,7 @@ public class StreamTest {
         assertTrue(result.isPresent());
         assertEquals(
                 10,
-                result.get()
+                result.get().intValue()
         );
     }
 
@@ -236,7 +236,7 @@ public class StreamTest {
     public void min() {
         Optional<Integer> result = StreamFactory.of(1, 3, 2, 4).min(Integer::compareTo);
         assertTrue(result.isPresent());
-        assertEquals(1, result.get());
+        assertEquals(1, result.get().intValue());
 
         assertFalse(
                 StreamFactory.of(1, 2, 3).filter(x -> x > 5).min(Integer::compareTo)
@@ -247,7 +247,7 @@ public class StreamTest {
     public void max() {
         Optional<Integer> result = StreamFactory.of(1, 4, 3, 2).max(Integer::compareTo);
         assertTrue(result.isPresent());
-        assertEquals(4, result.get());
+        assertEquals(4, result.get().intValue());
 
         assertFalse(
                 StreamFactory.of(1, 2, 3).filter(x -> x > 5).max(Integer::compareTo)
@@ -291,7 +291,7 @@ public class StreamTest {
                 .findAny();
 
         assertTrue(result.isPresent());
-        assertEquals(2, result.get());
+        assertEquals(2, result.get().longValue());
 
     }
 

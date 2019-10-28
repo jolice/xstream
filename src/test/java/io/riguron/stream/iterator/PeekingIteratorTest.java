@@ -1,13 +1,13 @@
 package io.riguron.stream.iterator;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
-import java.util.function.Consumer;
 
-import static org.junit.Assert.*;
+
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Matchers.eq;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
@@ -21,17 +21,17 @@ public class PeekingIteratorTest {
         Iterator<Integer> peekingItr = new PeekingIterator<>(Arrays.asList(1, 2, 3).iterator(), target::callMe);
 
         assertTrue(peekingItr.hasNext());
-        assertEquals(1, peekingItr.next());
+        assertEquals(1, peekingItr.next().intValue());
         verify(target).callMe(eq(1));
 
 
         assertTrue(peekingItr.hasNext());
-        assertEquals(2, peekingItr.next());
+        assertEquals(2, peekingItr.next().intValue());
         verify(target).callMe(eq(2));
 
 
         assertTrue(peekingItr.hasNext());
-        assertEquals(3, peekingItr.next());
+        assertEquals(3, peekingItr.next().intValue());
         verify(target).callMe(eq(3));
     }
 

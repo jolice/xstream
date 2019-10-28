@@ -1,19 +1,23 @@
 package io.riguron.stream.comparator;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.function.Executable;
 
 import java.util.function.Function;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
 
 public class ArbitraryTypeComparatorTest {
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void whenComparingNonComparableTypes() {
 
-        ArbitraryTypeComparator<Function<?, ?>> comparator = new ArbitraryTypeComparator<>();
-
-        comparator.compare(Function.identity(), Function.identity());
+        assertThrows(IllegalArgumentException.class, () -> {
+            ArbitraryTypeComparator<Function<?, ?>> comparator = new ArbitraryTypeComparator<>();
+            comparator.compare(Function.identity(), Function.identity());
+        });
     }
 
     @Test

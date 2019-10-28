@@ -1,6 +1,6 @@
 package io.riguron.stream.iterator;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -8,7 +8,9 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.function.Predicate;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class FilteringIteratorTest {
 
@@ -17,13 +19,13 @@ public class FilteringIteratorTest {
         Iterator<Integer> iterator = iterator(Arrays.asList(1, 3, 2, 4, 5), x -> x >= 3);
 
         assertTrue(iterator.hasNext());
-        assertEquals(3, iterator.next());
+        assertEquals(3, iterator.next().intValue());
 
         assertTrue(iterator.hasNext());
-        assertEquals(4, iterator.next());
+        assertEquals(4, iterator.next().intValue());
 
         assertTrue(iterator.hasNext());
-        assertEquals(5, iterator.next());
+        assertEquals(5, iterator.next().intValue());
 
     }
 
@@ -38,20 +40,20 @@ public class FilteringIteratorTest {
         Iterator<Integer> iterator = iterator(Arrays.asList(1, 3, 2, 4, 5), x -> x <= 10);
 
         assertTrue(iterator.hasNext());
-        assertEquals(1, iterator.next());
+        assertEquals(1, iterator.next().intValue());
 
         assertTrue(iterator.hasNext());
-        assertEquals(3, iterator.next());
+        assertEquals(3, iterator.next().intValue());
 
         assertTrue(iterator.hasNext());
-        assertEquals(2, iterator.next());
+        assertEquals(2, iterator.next().intValue());
 
         assertTrue(iterator.hasNext());
-        assertEquals(4, iterator.next());
+        assertEquals(4, iterator.next().intValue());
 
 
         assertTrue(iterator.hasNext());
-        assertEquals(5, iterator.next());
+        assertEquals(5, iterator.next().intValue());
 
     }
     @Test

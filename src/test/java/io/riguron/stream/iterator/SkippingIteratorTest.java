@@ -1,13 +1,12 @@
 package io.riguron.stream.iterator;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 import java.util.Iterator;
-import java.util.function.Consumer;
-import java.util.stream.Stream;
 
-import static org.junit.Assert.*;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class SkippingIteratorTest {
 
@@ -18,7 +17,7 @@ public class SkippingIteratorTest {
 
         for (int i = 3; i <= 7; i++) {
             assertTrue(iterator.hasNext());
-            assertEquals(i, iterator.next());
+            assertEquals(i, iterator.next().intValue());
         }
 
 
@@ -55,7 +54,7 @@ public class SkippingIteratorTest {
     private void fullExists(Iterator<Integer> iterator) {
         for (int i = 1; i <= 7; i++) {
             assertTrue(iterator.hasNext());
-            assertEquals(i, iterator.next());
+            assertEquals(i, iterator.next().intValue());
         }
     }
 

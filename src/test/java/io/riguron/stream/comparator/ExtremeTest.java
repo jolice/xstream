@@ -1,12 +1,13 @@
 package io.riguron.stream.comparator;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.Optional;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class ExtremeTest {
 
@@ -19,7 +20,7 @@ public class ExtremeTest {
 
         Optional<Integer> result = extreme.get();
         assertTrue(result.isPresent());
-        assertEquals(1, result.get());
+        assertEquals(1, result.get().longValue());
     }
 
     @Test
@@ -31,6 +32,6 @@ public class ExtremeTest {
 
         Optional<Integer> result = extreme.get();
         assertTrue(result.isPresent());
-        assertEquals(5, result.get());
+        assertEquals(5, result.get().longValue());
     }
 }

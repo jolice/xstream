@@ -1,11 +1,11 @@
 package io.riguron.stream.iterator;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 import java.util.Collections;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class DropWhileIteratorTest {
 
@@ -17,16 +17,16 @@ public class DropWhileIteratorTest {
         );
 
         assertTrue(dropWhile.hasNext());
-        assertEquals(8, dropWhile.next());
+        assertEquals(8, dropWhile.next().intValue());
 
         assertTrue(dropWhile.hasNext());
-        assertEquals(1, dropWhile.next());
+        assertEquals(1, dropWhile.next().intValue());
 
         assertTrue(dropWhile.hasNext());
-        assertEquals(9, dropWhile.next());
+        assertEquals(9, dropWhile.next().intValue());
 
         assertTrue(dropWhile.hasNext());
-        assertEquals(20, dropWhile.next());
+        assertEquals(20, dropWhile.next().intValue());
 
         assertFalse(dropWhile.hasNext());
     }
@@ -58,15 +58,15 @@ public class DropWhileIteratorTest {
         );
 
         assertTrue(dropWhile.hasNext());
-        assertEquals(5, dropWhile.next());
+        assertEquals(5, dropWhile.next().intValue());
 
 
         assertTrue(dropWhile.hasNext());
-        assertEquals(9, dropWhile.next());
+        assertEquals(9, dropWhile.next().intValue());
 
 
         assertTrue(dropWhile.hasNext());
-        assertEquals(8, dropWhile.next());
+        assertEquals(8, dropWhile.next().intValue());
 
         assertFalse(dropWhile.hasNext());
 

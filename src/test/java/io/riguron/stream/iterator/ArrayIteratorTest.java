@@ -1,33 +1,34 @@
 package io.riguron.stream.iterator;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.function.Executable;
 
 import java.util.NoSuchElementException;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class ArrayIteratorTest {
 
     @Test
     public void whenArrayContains() {
-        Integer[] array = new Integer[]{1,2,3,4};
+        Integer[] array = new Integer[]{1, 2, 3, 4};
 
         ArrayIterator<Integer> iterator = new ArrayIterator<>(array);
 
         assertTrue(iterator.hasNext());
-        assertEquals(1, iterator.next());
+        assertEquals(1, iterator.next().intValue());
 
 
         assertTrue(iterator.hasNext());
-        assertEquals(2, iterator.next());
+        assertEquals(2, iterator.next().intValue());
 
 
         assertTrue(iterator.hasNext());
-        assertEquals(3, iterator.next());
+        assertEquals(3, iterator.next().intValue());
 
 
         assertTrue(iterator.hasNext());
-        assertEquals(4, iterator.next());
+        assertEquals(4, iterator.next().intValue());
 
         assertFalse(iterator.hasNext());
     }
@@ -40,13 +41,18 @@ public class ArrayIteratorTest {
         assertFalse(iterator.hasNext());
     }
 
-    @Test(expected = NoSuchElementException.class)
+    @Test
     public void whenNoElement() {
-        Integer[] array = new Integer[]{1};
-        ArrayIterator<Integer> iterator = new ArrayIterator<>(array);
 
-        iterator.next();
-        iterator.next();
+        assertThrows(NoSuchElementException.class, () -> {
+            Integer[] array = new Integer[]{1};
+            ArrayIterator<Integer> iterator = new ArrayIterator<>(array);
+
+            iterator.next().intValue();
+            iterator.next().intValue();
+        });
+
+
     }
 
 }

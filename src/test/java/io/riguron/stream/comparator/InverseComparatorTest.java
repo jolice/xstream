@@ -1,11 +1,11 @@
 package io.riguron.stream.comparator;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.Comparator;
-import java.util.function.ToIntFunction;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 
 public class InverseComparatorTest {
 
