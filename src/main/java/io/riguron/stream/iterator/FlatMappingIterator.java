@@ -35,31 +35,26 @@ public class FlatMappingIterator<T, R> implements Iterator<R> {
     }
 
     private R nextElement() {
-        if (current.hasNext()) {
-            R nextElement = current.next();
-            if (!current.hasNext()) {
-                advance();
-                return nextElement;
-            } else {
-                hasNext = true;
-            }
+        R nextElement = current.next();
+        if (!current.hasNext()) {
+            advance();
             return nextElement;
         } else {
-            return advance() ? nextElement() : null;
+            hasNext = true;
         }
+        return nextElement;
     }
 
-    private boolean advance() {
+    private void advance() {
         while (delegate.hasNext()) {
             Iterator<? extends R> iterator = mapper.apply(delegate.next()).iterator();
             if (iterator.hasNext()) {
                 hasNext = true;
                 current = iterator;
-                return true;
+                return;
             }
         }
         hasNext = false;
-        return false;
     }
 
 

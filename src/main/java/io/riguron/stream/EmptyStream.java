@@ -1,6 +1,7 @@
 package io.riguron.stream;
 
 import io.riguron.stream.iterator.EmptyIterator;
+import lombok.EqualsAndHashCode;
 
 import java.util.Comparator;
 import java.util.Iterator;
@@ -8,8 +9,8 @@ import java.util.Optional;
 import java.util.function.*;
 import java.util.stream.Collector;
 
+@EqualsAndHashCode
 public class EmptyStream<T> implements Stream<T> {
-
     EmptyStream() {
     }
 

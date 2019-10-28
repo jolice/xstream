@@ -1,11 +1,9 @@
 package io.riguron.stream.iterator;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.function.Executable;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 import java.util.function.Predicate;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -27,6 +25,11 @@ public class FilteringIteratorTest {
         assertTrue(iterator.hasNext());
         assertEquals(5, iterator.next().intValue());
 
+    }
+
+    @Test
+    public void whenNothingThenThrows() {
+        assertThrows(NoSuchElementException.class, () -> new FilteringIterator<>(Arrays.asList(1,2,3).iterator(), x -> x == 4).next());
     }
 
     @Test

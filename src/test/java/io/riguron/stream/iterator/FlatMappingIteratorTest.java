@@ -28,6 +28,12 @@ public class FlatMappingIteratorTest {
     }
 
     @Test
+    public void whenEmptyThenThrowsError() {
+        assertThrows(NoSuchElementException.class, () ->
+                iterator(Arrays.asList(emptyList(), emptyList())).next());
+    }
+
+    @Test
     public void whenFirstSkipped() {
         testIterator(
                 Arrays.asList(

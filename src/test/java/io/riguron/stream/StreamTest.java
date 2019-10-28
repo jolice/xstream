@@ -7,8 +7,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-import static java.util.Collections.emptyList;
-import static java.util.Collections.reverseOrder;
+import static java.util.Collections.*;
 import static java.util.stream.Collectors.toList;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
@@ -16,7 +15,7 @@ import static org.mockito.Mockito.*;
 public class StreamTest {
 
     @Test
-    public void runFullStreamOps() {
+    void runFullStreamOps() {
 
         Target target = mock(Target.class);
 
@@ -35,19 +34,24 @@ public class StreamTest {
     }
 
     @Test
-    public void iterate() {
+    void iterate() {
         List<Integer> collect = StreamFactory.iterate(1, integer -> integer + 1).limit(5).collect(toList());
         assertEquals(Arrays.asList(1, 2, 3, 4, 5), collect);
     }
 
     @Test
-    public void customOp() {
+    void emptyStream() {
+        assertEquals(StreamFactory.of(), new EmptyStream<>());
+    }
+
+    @Test
+    void customOp() {
         assertEquals(Arrays.asList(2, 3, 4, 5),
                 StreamFactory.of(1, 2, 3, 4).apply(integerStream -> integerStream.map(x -> x + 1)).collect(toList()));
     }
 
     @Test
-    public void whenFilter() {
+    void whenFilter() {
         assertEquals(Arrays.asList(2, 4),
 
                 StreamFactory.of(1, 2, 3, 4).filter(x -> x % 2 == 0)
@@ -56,7 +60,7 @@ public class StreamTest {
     }
 
     @Test
-    public void whenMap() {
+    void whenMap() {
         assertEquals(Arrays.asList(1D, 4D, 9D, 16D),
 
                 StreamFactory.of(1, 2, 3, 4).map(x -> Math.pow(x, 2))
@@ -66,7 +70,7 @@ public class StreamTest {
 
 
     @Test
-    public void whenFlatMap() {
+    void whenFlatMap() {
 
         assertEquals(
                 Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9),
@@ -80,13 +84,13 @@ public class StreamTest {
     }
 
     @Test
-    public void whenDistinct() {
+    void whenDistinct() {
         assertEquals(Arrays.asList(4, 5, 6, 7),
                 StreamFactory.of(4, 4, 5, 5, 5, 6, 6, 6, 7, 7, 7).distinct().collect(toList()));
     }
 
     @Test
-    public void whenSorted() {
+    void whenSorted() {
         assertEquals(
                 Arrays.asList(1, 2, 3, 4, 5),
                 StreamFactory.of(3, 5, 2, 4, 1).sorted().collect(toList())
@@ -94,7 +98,7 @@ public class StreamTest {
     }
 
     @Test
-    public void whenSortedReverseOrder() {
+    void whenSortedReverseOrder() {
         assertEquals(
                 Arrays.asList(5, 4, 3, 2, 1),
                 StreamFactory.of(3, 5, 2, 4, 1).sorted(reverseOrder()).collect(toList())
@@ -102,7 +106,7 @@ public class StreamTest {
     }
 
     @Test
-    public void peek() {
+    void peek() {
         Target target = mock(Target.class);
 
         StreamFactory.of(1, 2, 3, 4, 5)
@@ -116,7 +120,7 @@ public class StreamTest {
 
 
     @Test
-    public void takeWhile() {
+    void takeWhile() {
         assertEquals(Arrays.asList(1, 2, 3, 4),
                 StreamFactory.of(1, 2, 3, 4, 9, 3, 2)
                         .takeWhile(x -> x <= 4)
@@ -125,7 +129,7 @@ public class StreamTest {
     }
 
     @Test
-    public void dropWhile() {
+    void dropWhile() {
         assertEquals(
                 Arrays.asList(4, 8, 9, 6),
                 StreamFactory.of(2, 3, 1, 0, -5, 4, 8, 9, 6)
@@ -134,7 +138,7 @@ public class StreamTest {
     }
 
     @Test
-    public void filterNot() {
+    void filterNot() {
         assertEquals(
                 Arrays.asList(3, 1, 5),
                 StreamFactory.of(2, 4, 6, 3, 1, 5, 0)
@@ -144,7 +148,7 @@ public class StreamTest {
     }
 
     @Test
-    public void filterNulls() {
+    void filterNulls() {
         assertEquals(
                 Arrays.asList(4, 2, 5),
                 StreamFactory.of(4, null, null, 2, null, 5).filterNulls().collect(toList())
@@ -153,19 +157,19 @@ public class StreamTest {
 
 
     @Test
-    public void limit() {
+    void limit() {
         assertEquals(Arrays.asList(1, 2),
                 StreamFactory.of(1, 2, 3, 4, 5).limit(2).collect(toList()));
     }
 
     @Test
-    public void skip() {
+    void skip() {
         assertEquals(Arrays.asList(3, 4, 5),
                 StreamFactory.of(1, 2, 3, 4, 5).skip(2).collect(toList()));
     }
 
     @Test
-    public void forEach() {
+    void forEach() {
 
         Target target = mock(Target.class);
         StreamFactory.of(1, 2, 3, 4).forEach(target::peekMe);
@@ -176,7 +180,7 @@ public class StreamTest {
     }
 
     @Test
-    public void toArray() {
+    void toArray() {
         Integer[] expected = {1, 2, 3};
 
         assertTrue(
@@ -186,13 +190,13 @@ public class StreamTest {
     }
 
     @Test
-    public void toGenericArray() {
+    void toGenericArray() {
         Integer[] integers = StreamFactory.of(1, 2, 3).toArray(Integer[]::new);
-        assertTrue(Arrays.equals(new Integer[]{1, 2, 3}, integers));
+        assertArrayEquals(new Integer[]{1, 2, 3}, integers);
     }
 
     @Test
-    public void reduceWithIdentity() {
+    void reduceWithIdentity() {
         assertEquals(
                 10,
                 StreamFactory.of(1, 2, 3, 4).reduce(0, Integer::sum).longValue()
@@ -201,7 +205,7 @@ public class StreamTest {
 
 
     @Test
-    public void reduceWithIdentityAndAccumulator() {
+    void reduceWithIdentityAndAccumulator() {
         assertEquals(
                 10,
                 StreamFactory.of(1, 2, 3, 4).reduce(0,
@@ -210,7 +214,29 @@ public class StreamTest {
     }
 
     @Test
-    public void reduceWithSupplier() {
+    void reduceForEmpty() {
+        assertFalse(
+                empty().reduce((x, y) -> y).isPresent());
+    }
+
+    @Test
+    void reduceForEmptyWithIdentity() {
+        assertEquals(1,
+                empty().reduce(1, (x, y) -> y).intValue());
+    }
+
+    @Test
+    void reduceForEmptyWithIdentityAndAccumulator() {
+        assertEquals(1,
+                empty().reduce(1, (x, y) -> y, (x, y) -> y).intValue());
+    }
+
+    private Stream<Integer> empty() {
+        return StreamFactory.of(1).filter(x -> x > 1);
+    }
+
+    @Test
+    void reduceWithSupplier() {
         Optional<Integer> result = StreamFactory.of(1, 2, 3, 4).reduce(Integer::sum);
         assertTrue(result.isPresent());
         assertEquals(
@@ -220,7 +246,7 @@ public class StreamTest {
     }
 
     @Test
-    public void collectSupplierAndAccumulator() {
+    void collectSupplierAndAccumulator() {
         assertEquals("abc",
                 StreamFactory.of(Arrays.asList('a', 'b', 'c'))
                         .collect(StringBuilder::new, StringBuilder::appendCodePoint, StringBuilder::append)
@@ -228,12 +254,12 @@ public class StreamTest {
     }
 
     @Test
-    public void collectToSet() {
+    void collectToSet() {
         assertEquals(Arrays.asList(1, 3, 2, 4), StreamFactory.of(1, 3, 2, 4).collect(toList()));
     }
 
     @Test
-    public void min() {
+    void min() {
         Optional<Integer> result = StreamFactory.of(1, 3, 2, 4).min(Integer::compareTo);
         assertTrue(result.isPresent());
         assertEquals(1, result.get().intValue());
@@ -244,7 +270,7 @@ public class StreamTest {
     }
 
     @Test
-    public void max() {
+    void max() {
         Optional<Integer> result = StreamFactory.of(1, 4, 3, 2).max(Integer::compareTo);
         assertTrue(result.isPresent());
         assertEquals(4, result.get().intValue());
@@ -256,14 +282,14 @@ public class StreamTest {
 
 
     @Test
-    public void count() {
+    void count() {
         assertEquals(3L,
                 StreamFactory.of(1, 2, 3).count());
         assertEquals(0L, StreamFactory.of(emptyList()).count());
     }
 
     @Test
-    public void anyMatch() {
+    void anyMatch() {
         assertFalse(
                 StreamFactory.of(1, 2, 3).anyMatch(x -> x == 5));
 
@@ -272,21 +298,21 @@ public class StreamTest {
     }
 
     @Test
-    public void allMatch() {
+    void allMatch() {
         assertTrue(StreamFactory.empty().allMatch(x -> false));
         assertTrue(StreamFactory.of(1, 1, 1, 1).allMatch(x -> true));
         assertFalse(StreamFactory.of(1, 1, 2, 3).allMatch(x -> x == 1));
     }
 
     @Test
-    public void noneMatch() {
+    void noneMatch() {
         assertFalse(StreamFactory.of(1, 2, 3).noneMatch(x -> x == 1));
         assertTrue(StreamFactory.of(4, 2, 3).noneMatch(x -> x == 1));
         assertTrue(StreamFactory.empty().noneMatch(x -> true));
     }
 
     @Test
-    public void findFirst() {
+    void findFirst() {
         Optional<Integer> result = StreamFactory.of(1, 2, 3).filter(x -> x.equals(2))
                 .findAny();
 
@@ -295,6 +321,11 @@ public class StreamTest {
 
     }
 
+    @Test
+    void findAnyEmpty() {
+        assertFalse(
+                empty().findAny().isPresent());
+    }
 
     interface Target {
 

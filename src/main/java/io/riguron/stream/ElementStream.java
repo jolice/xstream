@@ -9,6 +9,7 @@ import io.riguron.stream.matcher.AnyMatch;
 import io.riguron.stream.matcher.Match;
 import io.riguron.stream.matcher.NoneMatch;
 import io.riguron.stream.operation.ElementCount;
+import lombok.EqualsAndHashCode;
 
 import java.util.Comparator;
 import java.util.Iterator;

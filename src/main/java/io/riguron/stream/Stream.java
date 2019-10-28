@@ -10,6 +10,7 @@ import java.util.stream.*;
  * @param <T> type of elements in stream
  * @see java.util.stream.Stream for the documentation
  */
+
 public interface Stream<T> {
 
     Iterator<T> iterator();

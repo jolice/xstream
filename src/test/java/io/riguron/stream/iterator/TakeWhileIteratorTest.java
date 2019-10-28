@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.NoSuchElementException;
 
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -34,6 +35,12 @@ public class TakeWhileIteratorTest {
         assertEquals(8, takeWhileIterator.next().intValue());
 
         assertFalse(takeWhileIterator.hasNext());
+    }
+
+    @Test
+    public void whenNothing() {
+        TakeWhileIterator<Integer> takeWhileIterator = new TakeWhileIterator<>(Arrays.asList(1,2,3).iterator(), x -> x > 5);
+        assertThrows(NoSuchElementException.class, takeWhileIterator::next);
     }
 
     @Test

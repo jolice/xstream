@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.NoSuchElementException;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -29,6 +30,12 @@ public class DropWhileIteratorTest {
         assertEquals(20, dropWhile.next().intValue());
 
         assertFalse(dropWhile.hasNext());
+    }
+
+
+    @Test
+    public void whenNothingSuitsThenThrowsError() {
+        assertThrows(NoSuchElementException.class, () -> new DropWhileIterator<>(Arrays.asList(1,2,3).iterator(), x -> x < 5).next());
     }
 
     @Test
