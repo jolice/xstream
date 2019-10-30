@@ -6,9 +6,8 @@ Implementation of simplified and modified version of Java Stream API with lazy e
 [![codecov](https://codecov.io/gh/riguron/Stream/branch/master/graph/badge.svg)](https://codecov.io/gh/riguron/Stream)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=riguron_Stream&metric=alert_status)](https://sonarcloud.io/dashboard?id=riguron_Stream)
 [![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=riguron_Stream&metric=sqale_rating)](https://sonarcloud.io/dashboard?id=riguron_Stream)
-[![HitCount](http://hits.dwyl.io/riguron/Stream.svg)](http://hits.dwyl.io/riguron/Stream)
 
-# Dependency
+## Dependency
 
 This project is distributed via JitPack. Register a JitPack repository at your pom.xml:
 
@@ -31,7 +30,7 @@ And add the following dependency:
 </dependency>
 ```
 
-# Creating a stream
+## Creating a stream
 
 StreamFactory class is responsible for creating streams. 
 
@@ -60,9 +59,9 @@ Infinite streams are also supported:
 Stream<Integer> stream = StreamFactory.iterate(1, i -> i + 1).limit(5);
 ```
 
-# Operations
+## Operations
 
-Operations inherited from Java 8 Stream interface:
+### Operations inherited from Java 8 Stream interface
 
 - Iterator
 - Filter
@@ -85,15 +84,37 @@ Operations inherited from Java 8 Stream interface:
 - NoneMatch
 - FindAny 
 
-Custom operations:
+### Custom operations
 
-- TakeWhile
-- DropWhile
-- FilterNot
-- Apply
-- FilterNulls
+```TakeWhile``` skips all elements after the first one that doesn't match a predicate:
 
-The following operations are not supported:
+```java
+StreamFactory.of(1,2,3,4,5,6).takeWhile(x -> x <= 3)
+       .collect(Collectors.toList()); // [1,2,3]
+```
+
+```DropWhile``` skips all elements before the first one that matches a predicate:
+
+```java
+ StreamFactory.of(6,5,4,3,2,1).dropWhile(x -> x > 3)
+       .collect(Collectors.toList()); // [3,2,1]
+```       
+
+```FiterNot``` filters out the elements that match the predicate, inverse for ```Filter```:
+
+```java
+StreamFactory.of(1,2,3,4,5,6).filterNot(x -> x % 2 == 0)
+        .collect(Collectors.toList()); // [1,3,5]
+```
+
+```FilterNulls``` filters out null items:
+
+```java
+StreamFactory.of(1, 2, null, 4, null, 6).filterNulls()
+        .collect(Collectors.toList()); // [1, 2, 4, 6]
+```
+
+## Not supported operations
 
 - Parallel
 - MapToInt / Double / Long
