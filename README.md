@@ -1,11 +1,11 @@
 # Stream
 Implementation of simplified and modified version of Java Stream API with lazy evaluation.
 
-[![Build Status](https://travis-ci.org/riguron/Stream.svg?branch=master)](https://travis-ci.org/riguron/Stream)
-[![](https://jitpack.io/v/riguron/Stream.svg)](https://jitpack.io/#riguron/Stream)
-[![codecov](https://codecov.io/gh/riguron/Stream/branch/master/graph/badge.svg)](https://codecov.io/gh/riguron/Stream)
-[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=riguron_Stream&metric=alert_status)](https://sonarcloud.io/dashboard?id=riguron_Stream)
-[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=riguron_Stream&metric=sqale_rating)](https://sonarcloud.io/dashboard?id=riguron_Stream)
+[![Build Status](https://travis-ci.org/jolice/Stream.svg?branch=master)](https://travis-ci.org/jolice/Stream)
+[![](https://jitpack.io/v/jolice/Stream.svg)](https://jitpack.io/#jolice/Stream)
+[![codecov](https://codecov.io/gh/jolice/Stream/branch/master/graph/badge.svg)](https://codecov.io/gh/jolice/Stream)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=jolice_Stream&metric=alert_status)](https://sonarcloud.io/dashboard?id=jolice_Stream)
+[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=jolice_Stream&metric=sqale_rating)](https://sonarcloud.io/dashboard?id=jolice_Stream)
 
 ## Dependency
 
@@ -24,7 +24,7 @@ And add the following dependency:
 
 ```xml
 <dependency>
-    <groupId>com.github.riguron</groupId>
+    <groupId>com.github.jolice</groupId>
     <artifactId>Stream</artifactId>
     <version>v1.0</version>
 </dependency>
