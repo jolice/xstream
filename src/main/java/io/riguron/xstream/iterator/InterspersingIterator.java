@@ -11,7 +11,6 @@ public class InterspersingIterator<T> implements Iterator<T> {
     private final T value;
     private int counter;
 
-
     @Override
     public boolean hasNext() {
         return delegate.hasNext();

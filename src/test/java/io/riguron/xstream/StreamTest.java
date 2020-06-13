@@ -185,7 +185,7 @@ public class StreamTest {
 
         assertTrue(
                 Arrays.equals(expected,
-                        StreamFactory.stream(1, 2, 3).toArray())
+                        StreamFactory.stream(1, 2, 3).toArray(Integer[]::new))
         );
     }
 
@@ -245,13 +245,6 @@ public class StreamTest {
         );
     }
 
-    @Test
-    void collectSupplierAndAccumulator() {
-        assertEquals("abc",
-                StreamFactory.stream(Arrays.asList('a', 'b', 'c'))
-                        .collect(StringBuilder::new, StringBuilder::appendCodePoint, StringBuilder::append)
-                        .toString());
-    }
 
     @Test
     void collectToSet() {
@@ -334,7 +327,7 @@ public class StreamTest {
 
         List<Integer> interspersed = StreamFactory.stream(1,2,3).intersperse(() -> 5).collect(toList());
         assertEquals(
-                Arrays.asList(1,5,2,5,3,5),
+                Arrays.asList(1,5,2,5,3),
                 interspersed
         );
     }
