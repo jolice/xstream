@@ -183,10 +183,7 @@ public class StreamTest {
     void toArray() {
         Integer[] expected = {1, 2, 3};
 
-        assertTrue(
-                Arrays.equals(expected,
-                        StreamFactory.stream(1, 2, 3).toArray())
-        );
+        assertArrayEquals(expected, StreamFactory.stream(1, 2, 3).toArray(Integer[]::new));
     }
 
     @Test
@@ -245,13 +242,6 @@ public class StreamTest {
         );
     }
 
-    @Test
-    void collectSupplierAndAccumulator() {
-        assertEquals("abc",
-                StreamFactory.stream(Arrays.asList('a', 'b', 'c'))
-                        .collect(StringBuilder::new, StringBuilder::appendCodePoint, StringBuilder::append)
-                        .toString());
-    }
 
     @Test
     void collectToSet() {

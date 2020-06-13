@@ -101,7 +101,7 @@ class EmptyStreamTest {
     @Test
     void testToArray() {
         assertEquals(0,
-                emptyStream().toArray().length);
+                emptyStream().toArray(Integer[]::new).length);
     }
 
     @Test
@@ -121,14 +121,6 @@ class EmptyStreamTest {
     void reduce3Args() {
         Integer identity = 5;
         assertSame(identity, emptyStream().reduce(identity, (x, y) -> Integer.MAX_VALUE, (x, y) -> Integer.MAX_VALUE));
-    }
-
-    @Test
-    void collect() {
-        assertEquals("",
-                new EmptyStream<Character>()
-                        .collect(StringBuilder::new, StringBuilder::appendCodePoint, StringBuilder::append)
-                        .toString());
     }
 
     @Test
