@@ -11,9 +11,9 @@ after_success:
 
 addons:
   sonarcloud:
-    organization: "riguron"
+    organization: "jolice"
     token:
       secure: "J4qhUFr6NvakiT7AtBTadarYT5I3p6ukjEvxaKqQ/VXMB58XueBDPxcBAo2aT5rsKBASWOswZiV39LKPmL4UFnvSZ8qQlkayTElAs+UEVN3SaZgBRmkRsW1XpJmAii//uYT38nk4HbY3nYkPXdTYKgK+qXFw3xqfFBtQEWSNxKnlWmBX5T9jEiNamwL5jLGUU9zapN7HL8yS+8cIyxvm5SE508lZMcRSZskkJi92vS7n/FKCP//fjXUGB27oNbgNbRVEAwNXCtLgyzx+q+LdVgdAppwb/13kbDTb0QxQbCOfM8DfJWCaiZuKxIsNmCoC99iTfPN3hvr423lvs8C2RHxLs9NlFDFMxClHxNopEfyEZowqd4B8kyQZPRnJzVco9g/ikwz/9yOJGsZZ07MmcGp3lZ7qEMo7jg+K8MjLFVIHQwSWrTFqoGYVjIkeDNzwkfo0Nx0gxGA4TH+5A1eP5ulmVTM24qmynnUnaJoHuoZ+EHOdzC26y6MORbUcTtyR/sK4ReEWOyVEpgXB/V2I9puytz9n4cDQg7rQd4+/OLD7h0H2BobfH5IXblsLzEGPMKjerRQhP2iQNYuQUnBZAoJ3jVP2vz9lETU1stgN9qgF1mnb2mQmUBs4/a5Hpr2W+EGYiRGToYIp4VGx5Lkpy2tyP+d9TTHZNyfDhs5uSps="
 
 script:
-  - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar -Dsonar.projectKey=riguron_Stream
+  - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar -Dsonar.projectKey=jolice_Stream
